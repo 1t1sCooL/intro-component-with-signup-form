@@ -1,0 +1,25 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 38%;
+    font-family: "PoppinsBold";
+    color: white;
+    gap: 1.8rem;
+    margin: 1rem;
+    padding-left: .8rem;
+}
+.description .header {
+    letter-spacing: .02rem;
+    margin: 5.5rem 1rem 0 0;
+    line-height: 1.105;
+    font-size: 3.1rem;
+    font-weight: 800;
+}
+.description .text {
+    margin-top: 0;
+    font-family: "PoppinsSemiBold";
+    font-size: 1rem;
+    line-height: 1.6;
+}

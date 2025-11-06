@@ -1,0 +1,22 @@
+.input {
+    width: 100%;
+    padding: 1rem 1.9rem;
+    border-radius: .4rem;
+    border: 1px solid var(--Purple700);
+    font-size: .9rem;
+    box-sizing: border-box;
+}
+input{
+    color: black;
+    font-family: "PoppinsBold";
+}
+
+.input[type='submit'] {
+    width: 100%;
+    background-color: var(--Green400);
+    border: none;
+    color: white;
+    font-family: "PoppinsBold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
