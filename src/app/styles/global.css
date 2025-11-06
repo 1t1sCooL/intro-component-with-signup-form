@@ -9,10 +9,33 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 100 900;
-  src: url("../../../public/fonts/Poppins-Regular.ttf");
+  font-display: swap;
+  src: url("../../../public/fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face{
+  font-family: "PoppinsBold";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../../../public/fonts/Poppins-Bold.ttf") format("truetype");
+}
+@font-face{
+  font-family: "PoppinsSemiBold";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../../../public/fonts/Poppins-SemiBold.ttf") format("truetype");
 }
 body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: url("../../../public/bg-intro-desktop.png");
+  background-color: var(--Red400);
+  font-family: 'Poppins', sans-serif;
 }

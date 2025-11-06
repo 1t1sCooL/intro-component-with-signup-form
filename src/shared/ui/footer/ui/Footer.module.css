@@ -1,0 +1,23 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "PoppinsBold";
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+}
+.footer a{
+    scale: 1;
+    margin: 5px;
+    transition: scale 0.1s ease;
+}
+.footer a:hover {
+    scale: 1.08;
+}
+.footer a:link{
+    color: var(--Purple700);
+}
+.footer a:visited {
+    color: var(--Gray900);
+}
