@@ -6,6 +6,7 @@
     text-align: center;
     font-size: 1rem;
     color: white;
+    text-shadow: 10px 10px rgba(0, 0, 0, 0.2);
 }
 .footer a{
     scale: 1;
@@ -20,4 +21,12 @@
 }
 .footer a:visited {
     color: var(--Gray900);
+}
+@media (max-width: 1000px) {
+    .footer {
+        flex-direction: column;
+    }
+    .footer a{
+        margin: 2px;
+    }
 }
