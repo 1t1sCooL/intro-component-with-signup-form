@@ -1,61 +1,20 @@
 import styles from './Form.module.css'
 import { Input } from "@/shared/ui/input";
 import  React, { useState } from "react";
+import { useForm } from '../lib/useForm.ts';
+import { validateField } from "@/widgets/form/lib/validateField.ts";
 
 export const Form = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    });
-
-    const [errors, setErrors] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    });
-
-    const validateField = (name: string, value: string) => {
-        let error = '';
-
-        switch (name) {
-            case 'firstName':
-                if (!value.trim()) error = 'First Name cannot be empty';
-                break;
-            case 'lastName':
-                if (!value.trim()) error = 'Last Name cannot be empty';
-                break;
-
-            case 'email':
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!value.trim()) {
-                    error = 'This field is required';
-                } else if (!emailRegex.test(value)) {
-                    error = 'Looks like this is not an email';
-                }
-                break;
-
-            case 'password':
-                if (!value) {
-                    error = 'Password cannot be empty';
-                } else if (value.length < 8) {
-                    error = 'Password must be at least 8 characters';
-                }
-                break;
-
-            default:
-                break;
-        }
-
-        setErrors(prev => ({ ...prev, [name]: error }));
-    };
+    const {formData,
+        setFormData,
+        errors,
+        setErrors} = useForm()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        validateField(name, value);
+        const error = validateField(name, value);
+        setErrors(prev => ({ ...prev, [name]: error }));
     };
     return (
         <section className={styles.form}>
