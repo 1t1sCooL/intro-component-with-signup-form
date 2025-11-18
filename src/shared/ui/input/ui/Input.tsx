@@ -6,15 +6,12 @@ interface InputProps {
     name?: string;
     type?: "text" | "password" | "email" | "submit";
     value?: string;
-    onChange?: (value: string) => void;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
     error?: string;
+    disabled?: boolean;
 }
 
 export const Input = ({ placeholder, type = "text", value = "", name, onChange, error }: InputProps) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e);
-    };
-
     return (
         <div className={styles.inputWrapper}>
             <input
@@ -23,7 +20,7 @@ export const Input = ({ placeholder, type = "text", value = "", name, onChange, 
                 type={type}
                 value={value}
                 name={name}
-                onChange={handleChange}
+                onChange={onChange}
             />
             {error && <span className={styles.errorMessage}>{error}</span>}
         </div>
