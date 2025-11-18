@@ -1,6 +1,6 @@
 import styles from './Form.module.css'
 import { Input } from "@/shared/ui/input";
-import  React, { useState } from "react";
+import  React from "react";
 import { useForm } from '../lib/useForm.ts';
 import { validateField } from "@/widgets/form/lib/validateField.ts";
 
