@@ -18,6 +18,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.23rem;
+    box-shadow: 0 8px 2px rgba(0, 0, 0, 0.2);
 }
 .formHeader {
     vertical-align: middle;
@@ -26,8 +27,8 @@
     padding: 1.2rem 1rem;
     border-radius: .7rem;
     background-color: var(--Purple700);
-    width: 100%;
     text-align: center;
+    box-shadow: 0 8px 2px rgba(0, 0, 0, 0.2);
 }
 h2.formHeader {
     font-family: 'Poppins';
@@ -46,4 +47,29 @@ h2.formHeader  span{
 .formText span{
     font-family: 'PoppinsSemiBold';
     color: var(--Red400);
+    cursor: pointer;
+}
+@media (max-width: 1000px) {
+    .formHeader {
+        padding: 2rem 1rem;
+    }
+    .form {
+        width: 88%;
+        margin: 1rem 1rem 1rem 1rem;
+
+    }
+    .form form {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    .form h2 {
+        padding: 1.1rem 4.2rem;
+        line-height: 1.7;
+        font-size: .94rem;
+    }
+    .formText{
+        text-align: center;
+        margin: -.6rem 1rem 0 1rem;
+        line-height: 1.9;
+    }
 }
