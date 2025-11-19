@@ -39,3 +39,9 @@ body{
   background-color: var(--Red400);
   font-family: 'Poppins', sans-serif;
 }
+@media (max-width: 1000px){
+  body{
+    background: url("../../../public/bg-intro-mobile.png");
+    background-color: var(--Red400);
+  }
+}
