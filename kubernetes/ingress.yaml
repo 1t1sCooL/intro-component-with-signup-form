@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mmalabugin-ingress
+  name: intro-component-with-signup-form
   namespace: default
   annotations:
     kubernetes.io/ingress.class: traefik
@@ -17,13 +17,6 @@ spec:
                 name: intro-component-with-signup-form
                 port:
                   number: 80
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: mailer-service
-                port:
-                  number: 4000
   tls:
     - hosts:
         - mmalabugin.ru
