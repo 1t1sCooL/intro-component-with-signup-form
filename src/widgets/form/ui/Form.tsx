@@ -69,13 +69,7 @@ export const Form = () => {
       return;
     }
 
-    const mailerUrl = (import.meta.env.VITE_MAILER_URL as string | undefined) ?? 'https://mmalabugin.ru/api/send';
-    const apiKey = import.meta.env.MAILER_API_KEY as string | undefined;
-
-    if (!apiKey) {
-      setSendError('Не задан VITE_MAILER_API_KEY.');
-      return;
-    }
+    const mailerUrl = '/api/send';
 
     setSending(true);
     setSendError(null);
@@ -92,7 +86,6 @@ export const Form = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-api-key': apiKey,
           },
           body: JSON.stringify(payload),
         });
