@@ -70,7 +70,7 @@ export const Form = () => {
     }
 
     const mailerUrl = (import.meta.env.VITE_MAILER_URL as string | undefined) ?? 'https://mmalabugin.ru/api/send';
-    const apiKey = import.meta.env.VITE_MAILER_API_KEY as string | undefined;
+    const apiKey = import.meta.env.MAILER_API_KEY as string | undefined;
 
     if (!apiKey) {
       setSendError('Не задан VITE_MAILER_API_KEY.');
