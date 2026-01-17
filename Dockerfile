@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt
 COPY package*.json ./
 RUN npm install
 COPY . .
+ARG VITE_BASE_PATH=/IntroComponentWithSignupForm/
+ENV VITE_BASE_PATH=$VITE_BASE_PATH
 RUN npm run build
 
 FROM nginx:alpine
