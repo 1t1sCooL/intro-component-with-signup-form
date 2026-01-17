@@ -1,57 +1,60 @@
 .inputWrapper {
-    width: 100%;
-    text-align: right;
-    font-family: "PoppinsBold";
+  width: 100%;
+  text-align: right;
+  font-family: 'PoppinsBold';
+  min-width: 0;
 }
 .input {
-    width: 100%;
-    padding: 1.1rem 1.9rem;
-    border-radius: .3rem;
-    border: 1px solid var(--Purple350);
-    font-size: .9rem;
-    box-sizing: border-box;
-    font-family: "PoppinsBold";
+  width: 100%;
+  padding: 1.1rem 1.9rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--Purple350);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  font-family: 'PoppinsBold';
 }
-input{
-    color: black;
+input {
+  color: black;
 }
 .input[type='submit'] {
-    width: 100%;
-    background-color: var(--Green400);
-    border: none;
-    padding: 1.1rem 1.9rem;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 2px hsl(144, 49%, 41%);
-    cursor: pointer;
+  width: 100%;
+  background-color: var(--Green400);
+  border: none;
+  padding: 1.1rem 1.9rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 2px hsl(144, 49%, 41%);
+  cursor: pointer;
 }
-.input[type='submit']:hover{
-    background-color: hsla(154, 59%, 51%, 0.75);
-    box-shadow: 0 4px 2px hsla(144, 49%, 41%, 0.75);
+.input[type='submit']:hover {
+  background-color: hsla(154, 59%, 51%, 0.75);
+  box-shadow: 0 4px 2px hsla(144, 49%, 41%, 0.75);
 }
-.errorMessage{
-    font-style: italic;
-    font-size: .68rem;
-    color: var(--Red400);
-    font-family: "PoppinsSemiBold";
+.errorMessage {
+  display: block;
+  font-style: italic;
+  font-size: 0.68rem;
+  color: var(--Red400);
+  font-family: 'PoppinsSemiBold';
+  overflow-wrap: anywhere;
 }
-.inputError::placeholder{
-    color: transparent;
+.inputError::placeholder {
+  color: transparent;
 }
-.input.inputError{
-    border: 2px solid var(--Red400);
-    color: var(--Red400);
-    font-family: "PoppinsSemiBold";
-    background: url("/icon-error.svg") no-repeat right 25px center ;
+.input.inputError {
+  border: 2px solid var(--Red400);
+  color: var(--Red400);
+  font-family: 'PoppinsSemiBold';
+  background: url('/icon-error.svg') no-repeat right 25px center;
 }
 @media (max-width: 1000px) {
-    .input {
-        padding: 1.1rem 1.2rem;
-        font-size: .85rem;
-        border-radius: .3rem;
-    }
-    .input[type='submit'] {
-        font-size: .94rem;
-    }
+  .input {
+    padding: 1.1rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 0.3rem;
+  }
+  .input[type='submit'] {
+    font-size: 0.94rem;
+  }
 }
