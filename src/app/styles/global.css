@@ -1,47 +1,82 @@
-:root{
+:root {
   --Red400: hsl(0, 100%, 74%);
   --Green400: hsl(154, 59%, 51%);
   --Purple700: hsl(248, 32%, 49%);
   --Gray900: hsl(249, 10%, 26%);
   --Purple350: hsl(246, 25%, 77%);
+  --mx: 50vw;
+  --my: 35vh;
+  --bx: 0px;
+  --by: 0px;
 }
-@font-face{
+@font-face {
   font-family: Poppins;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../../../public/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
 }
-@font-face{
-  font-family: "PoppinsBold";
+@font-face {
+  font-family: 'PoppinsBold';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../../../public/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
 }
-@font-face{
-  font-family: "PoppinsSemiBold";
+@font-face {
+  font-family: 'PoppinsSemiBold';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../../../public/fonts/Poppins-SemiBold.ttf") format("truetype");
+  src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
 }
-body{
-  width: 100vw;
-  height: 100vh;
+body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: url("../../../public/bg-intro-desktop.png");
+  background: url('/bg-intro-desktop.png');
   background-color: var(--Red400);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: calc(50% + var(--bx)) calc(50% + var(--by));
   font-family: 'Poppins', sans-serif;
 }
-@media (max-width: 1000px){
-  body{
-    background: url("../../../public/bg-intro-mobile.png");
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    700px circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0) 45%
+  );
+  mix-blend-mode: soft-light;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    display: none;
+  }
+
+  body {
+    background-position: center;
+  }
+}
+@media (max-width: 1000px) {
+  body {
+    background: url('/bg-intro-mobile.png');
     background-color: var(--Red400);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: calc(50% + var(--bx)) calc(50% + var(--by));
   }
 }
