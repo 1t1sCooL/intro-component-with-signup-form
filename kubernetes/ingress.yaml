@@ -17,6 +17,13 @@ spec:
                 name: intro-component-with-signup-form
                 port:
                   number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: intro-component-with-signup-form
+                port:
+                  number: 80
   tls:
     - hosts:
         - mmalabugin.ru
