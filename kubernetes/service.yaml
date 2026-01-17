@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: intro-component-with-signup-form
+  namespace: default
+spec:
+  selector:
+    app: intro-component-with-signup-form-app
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

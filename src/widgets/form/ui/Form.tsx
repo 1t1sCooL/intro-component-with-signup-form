@@ -10,6 +10,9 @@ export const Form = () => {
   const { formData, setFormData, errors, setErrors } = useForm();
   const [submitted, setSubmitted] = React.useState(false);
   const [isShaking, setIsShaking] = React.useState(false);
+  const [hasTriedSubmit, setHasTriedSubmit] = React.useState(false);
+  const [sending, setSending] = React.useState(false);
+  const [sendError, setSendError] = React.useState<string | null>(null);
 
   const validateAll = React.useCallback(() => {
     const nextErrors = {
@@ -37,11 +40,16 @@ export const Form = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (!hasTriedSubmit) return;
+
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (!hasTriedSubmit) return;
+
     const { name, value } = e.target;
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
@@ -49,6 +57,8 @@ export const Form = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setHasTriedSubmit(true);
+
     const nextErrors = validateAll();
     const hasErrors = Object.values(nextErrors).some(Boolean);
 
@@ -59,7 +69,48 @@ export const Form = () => {
       return;
     }
 
-    setSubmitted(true);
+    const mailerUrl = (import.meta.env.VITE_MAILER_URL as string | undefined) ?? 'https://mmalabugin.ru/api/send';
+    const apiKey = import.meta.env.VITE_MAILER_API_KEY as string | undefined;
+
+    if (!apiKey) {
+      setSendError('Не задан VITE_MAILER_API_KEY.');
+      return;
+    }
+
+    setSending(true);
+    setSendError(null);
+
+    void (async () => {
+      try {
+        const payload = {
+          to: 'mmalabugin@gmail.com',
+          subject: 'Intro signup form',
+          text: `New signup form submission:\n\nFirst name: ${formData.firstName}\nLast name: ${formData.lastName}\nEmail: ${formData.email}`,
+        };
+
+        const res = await fetch(mailerUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const text = await res.text().catch(() => '');
+          throw new Error(text || `HTTP ${res.status}`);
+        }
+
+        setSubmitted(true);
+      } catch (err) {
+        setSendError(err instanceof Error ? err.message : 'Ошибка отправки.');
+        setIsShaking(true);
+        window.setTimeout(() => setIsShaking(false), 420);
+      } finally {
+        setSending(false);
+      }
+    })();
   };
 
   const handleReset = () => {
@@ -76,6 +127,8 @@ export const Form = () => {
       password: '',
     });
     setSubmitted(false);
+    setHasTriedSubmit(false);
+    setSendError(null);
   };
 
   return (
@@ -91,10 +144,10 @@ export const Form = () => {
           value={formData.firstName}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.firstName}
+          error={hasTriedSubmit ? errors.firstName : ''}
           autoComplete="given-name"
           required
-          disabled={submitted}
+          disabled={submitted || sending}
         />
         <Input
           name="lastName"
@@ -103,10 +156,10 @@ export const Form = () => {
           value={formData.lastName}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.lastName}
+          error={hasTriedSubmit ? errors.lastName : ''}
           autoComplete="family-name"
           required
-          disabled={submitted}
+          disabled={submitted || sending}
         />
         <Input
           name="email"
@@ -115,10 +168,10 @@ export const Form = () => {
           value={formData.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.email}
+          error={hasTriedSubmit ? errors.email : ''}
           autoComplete="email"
           required
-          disabled={submitted}
+          disabled={submitted || sending}
         />
         <Input
           name="password"
@@ -127,27 +180,17 @@ export const Form = () => {
           value={formData.password}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.password}
+          error={hasTriedSubmit ? errors.password : ''}
           autoComplete="new-password"
           required
-          disabled={submitted}
+          disabled={submitted || sending}
         />
         <Input
-          value={submitted ? 'Submitted' : 'Claim your free trial'}
+          value={submitted ? 'Submitted' : sending ? 'Sending...' : 'Claim your free trial'}
           type="submit"
-          disabled={
-            submitted ||
-            !!errors.firstName ||
-            !!errors.lastName ||
-            !!errors.email ||
-            !!errors.password ||
-            !formData.firstName.trim() ||
-            !formData.lastName.trim() ||
-            !formData.email.trim() ||
-            !formData.password
-          }
+          disabled={submitted || sending}
         />
-        {submitted && (
+        {submitted && !sending && (
           <button type="button" onClick={handleReset} className={styles.resetButton}>
             Reset
           </button>
@@ -155,6 +198,7 @@ export const Form = () => {
         <p className={styles.formText}>
           By clicking the button, you are agreeing to our <span>Terms and Services</span>
         </p>
+        {sendError && <p className={styles.errorText}>{sendError}</p>}
         {submitted && <p className={styles.successText}>Thank you! Your demo submission was received.</p>}
       </form>
     </section>

@@ -88,6 +88,14 @@
   color: var(--Gray900);
 }
 
+.errorText {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  font-family: 'PoppinsSemiBold';
+  color: var(--Red400);
+}
+
 .form form:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 14px rgba(0, 0, 0, 0.18);
