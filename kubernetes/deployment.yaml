@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intro-component-with-signup-form-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: intro-component-with-signup-form-app
+  template:
+    metadata:
+      labels:
+        app: intro-component-with-signup-form-app
+    spec:
+      containers:
+        - name: intro-component-with-signup-form-app
+          image: intro-component-with-signup-form-app:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: 'production'
+          resources:
+            requests:
+              memory: '128Mi'
+              cpu: '100m'
+            limits:
+              memory: '256Mi'
+              cpu: '500m'
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
