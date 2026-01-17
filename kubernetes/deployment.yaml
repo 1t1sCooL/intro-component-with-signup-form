@@ -5,6 +5,11 @@ metadata:
   namespace: default
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: intro-component-with-signup-form-app
@@ -16,6 +21,7 @@ spec:
       containers:
         - name: intro-component-with-signup-form-app
           image: intro-component-with-signup-form-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
@@ -35,7 +41,13 @@ spec:
               cpu: '500m'
           livenessProbe:
             httpGet:
-              path: /
+              path: /IntroComponentWithSignupForm/
               port: 80
-            initialDelaySeconds: 15
+            initialDelaySeconds: 20
             periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /IntroComponentWithSignupForm/
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
