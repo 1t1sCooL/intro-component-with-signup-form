@@ -10,10 +10,10 @@ FROM nginx:alpine
 
 RUN mkdir -p /usr/share/nginx/html/IntroComponentWithSignupForm
 
-COPY nginx.conf /etc/nginx/nginx.conf.template
+COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/dist /usr/share/nginx/html/IntroComponentWithSignupForm/
 
 EXPOSE 80
 
-CMD ["/bin/sh", "-c", "envsubst '${MAILER_API_KEY}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
