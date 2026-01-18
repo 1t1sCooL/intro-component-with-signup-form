@@ -32,6 +32,9 @@ spec:
                 secretKeyRef:
                   name: mailer-secrets
                   key: MAILER_API_KEY
+            - name: ENV_SUBST_LIST
+              value: 'MAILER_API_KEY,NODE_ENV'
+
           resources:
             requests:
               memory: '128Mi'
