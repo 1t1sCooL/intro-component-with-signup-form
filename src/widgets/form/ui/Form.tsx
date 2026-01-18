@@ -77,7 +77,7 @@ export const Form = () => {
     void (async () => {
       try {
         const payload = {
-          to: 'mmalabugin@gmail.com',
+          to: formData.email,
           subject: 'Intro signup form',
           text: `New signup form submission:\n\nFirst name: ${formData.firstName}\nLast name: ${formData.lastName}\nEmail: ${formData.email}`,
         };
