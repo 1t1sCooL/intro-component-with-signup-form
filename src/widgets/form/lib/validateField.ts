@@ -10,7 +10,8 @@ export const validateField = (name: string, value: string): string => {
       return emailRegex.test(value) ? '' : 'Looks like this is not an email';
     }
     case 'password':
-      return !value || value.length < 8 ? 'Password cannot be empty' : '';
+      if (!value) return 'Password cannot be empty';
+      return value.length < 8 ? 'The password must contain at least 8 characters' : '';
     default:
       return '';
   }
