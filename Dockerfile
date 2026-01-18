@@ -9,7 +9,7 @@ FROM nginx:alpine
 
 RUN mkdir -p /etc/nginx/templates
 
-COPY default.conf.template /etc/nginx/templates/default.conf.template
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 RUN mkdir -p /usr/share/nginx/html/IntroComponentWithSignupForm
 COPY --from=build /app/dist /usr/share/nginx/html/IntroComponentWithSignupForm/
