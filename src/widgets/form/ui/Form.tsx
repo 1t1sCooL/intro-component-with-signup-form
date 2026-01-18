@@ -97,7 +97,7 @@ export const Form = () => {
 
         setSubmitted(true);
       } catch (err) {
-        setSendError(err instanceof Error ? err.message : 'Ошибка отправки.');
+        setSendError(err instanceof Error ? 'Error: Mailer not connected to Vercel' : 'Ошибка отправки.');
         setIsShaking(true);
         window.setTimeout(() => setIsShaking(false), 420);
       } finally {
