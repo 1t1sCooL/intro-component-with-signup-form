@@ -69,7 +69,7 @@ export const Form = () => {
       return;
     }
 
-    const mailerUrl = '/api/send';
+    const mailerUrl = '/IntroComponentWithSignupForm/send';
 
     setSending(true);
     setSendError(null);
