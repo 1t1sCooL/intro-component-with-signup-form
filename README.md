@@ -45,7 +45,8 @@ Users should be able to:
 ## Author
 
 - Website - [mmalabugin.ru](https://mmalabugin.ru/)
-- Frontend Mentor - [@1t1sCooL](https://www.frontendmentor.io/profile/1t1sCooL)
+- Frontend Mentor - [@1t1sCooL](https://www.frontendmentor.io/profile/1t1sCooL)
+- GitHub - [@1t1sCooL](https://github.com/1t1sCooL)
 - Twitter - [@vi_el_mar](https://www.twitter.com/vi_el_mar)
 - Telegram - [@ItIsCooL](https://t.me/ItIsCooL)
 
